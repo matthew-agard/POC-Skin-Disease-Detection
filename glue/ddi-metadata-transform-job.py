@@ -11,7 +11,7 @@ logger = glueContext.get_logger()
 ddi_meta_df = spark.read\
                     .format("csv")\
                     .option("header", "true")\
-                    .load("s3://poc-skin-disease-detection-cv/ddidiversedermatologyimages/metadata/")
+                    .load("s3://poc-skin-disease-detection-cv/ddidiversedermatologyimages/metadata/raw/")
 
 # Print original schema & data to CloudWatch
 logger.info("DDI Original Schema:")
@@ -39,4 +39,4 @@ ddi_meta_df.write\
             .format("csv")\
             .option("header", "true")\
             .mode("overwrite")\
-            .save("s3://poc-skin-disease-detection-cv/ddidiversedermatologyimages/metadata-transform/")
+            .save("s3://poc-skin-disease-detection-cv/ddidiversedermatologyimages/metadata/transform/")
